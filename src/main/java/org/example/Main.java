@@ -10,5 +10,9 @@ public class Main {
          tstStatistics.addRunTimePoint(3,5,"secondTest");
          tstStatistics.addRunTimePoint(6,9,"thirdTest");
         tstStatistics.printRunTimeStatistics();
+
+        CreateCollection myCollection = new CreateCollection(CreateCollection.listType.ArrayList, 100);
+        int a = myCollection.getRandomNumber(50);
+        System.out.println(a);
     }
 }
