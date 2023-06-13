@@ -4,84 +4,52 @@ import java.util.*;
 
 public class Main {
     //public enum listType{ ArrayList, LinkedList, ArrayDeque, TreeSet, HashSet, LinkedHashSet, // TreeMap, HashMap, LinkedHashMap };
-    static void printCollection(Collection inputCollection){
-        for (Iterator myElement = inputCollection.iterator(); myElement.hasNext();){
-            Object myItem = myElement.next();
-            System.out.print(myItem + ": ");
-        }
-        System.out.println("\n");
-    }
-    static void copyCollection(Collection inputCollection, Collection outputCollection){
-        for (Iterator myElement = inputCollection.iterator(); myElement.hasNext();){
-            Object myItem = myElement.next();
-            outputCollection.add(myItem);
-        }
-    }
-    static void fillCollection(Collection myCollection, int sizeOfList, int numberBorder){
-        for (int myCounter = 0; myCounter < sizeOfList; myCounter++ ){
-            myCollection.add(getRandomNumber(numberBorder));
-        }
-    }
-    static int getRandomNumber(int numberBorder){
-        return (int) (Math.random() * numberBorder);
-    }
+
     public static void main(String[] args) {
+        /*
+        1.Написати програму яка видаляє з колекції цілих чисел всі дублікати, якщо вони є.
+        Початкову колекцію з 100 елементів потрібно заповнити випадковими числами (ліміт 50).
+        На екран потрібно вивести обидві колекції та кількість видалених дублікатів.
 
-        // create measurement tables
-        RunTimeStatistics testMassive = new RunTimeStatistics("Create test massive");
-        RunTimeStatistics linkedListCollection = new RunTimeStatistics("LinkedList");
-        RunTimeStatistics arrayDequeCollection = new RunTimeStatistics("ArrayDeque");
-        RunTimeStatistics treeSetCollection = new RunTimeStatistics("TreeSet");
-        RunTimeStatistics hashSetCollection = new RunTimeStatistics("HashSet");
-        RunTimeStatistics linkedHashSetCollection = new RunTimeStatistics("LinkedHashSet");
+         */
 
-        long startTimePoint;
-        long stopTimePoint;
+        int sizeOfList = 100;
+        int maximumValue = 50;
 
-        // create test numbers
-        Collection <ArrayList> myTestList = new ArrayList<>();
-        startTimePoint = System.nanoTime();
-         fillCollection(myTestList, 100, 50);
-        stopTimePoint = System.nanoTime();
-        testMassive.addRunTimePoint(startTimePoint,stopTimePoint,"create massive");
-        printCollection(myTestList); // print test numbers
+        CollectionDiscovery myTestNumbers = new CollectionDiscovery("Test numbers", CollectionDiscovery.listType.ArrayList,sizeOfList, maximumValue);
+        myTestNumbers.measResult.printRunTimeStatistics();
+        myTestNumbers.printCollection(myTestNumbers.myCollection);
 
-        // fill LinkedList
-        Collection <LinkedList> myLinkedList = new LinkedList();
-        startTimePoint = System.nanoTime();
-         copyCollection(myTestList, myLinkedList);
-        stopTimePoint = System.nanoTime();
-        linkedListCollection.addRunTimePoint(startTimePoint,stopTimePoint,"LinkedList fill");
-        printCollection(myLinkedList);// print LinkedList
 
-        // fill ArrayDeque
-        Collection <ArrayDeque> myArrayDeque = new ArrayDeque();
-        startTimePoint = System.nanoTime();
-         copyCollection(myTestList, myArrayDeque);
-        stopTimePoint = System.nanoTime();
-        arrayDequeCollection.addRunTimePoint(startTimePoint,stopTimePoint,"ArrayDeque fill");
-        printCollection(myArrayDeque);// print ArrayDeque
+        CollectionDiscovery myArrayList = new CollectionDiscovery(myTestNumbers.myCollection,"ArrayList",CollectionDiscovery.listType.ArrayList);
+        myArrayList.measResult.printRunTimeStatistics();
+        myArrayList.printCollection(myArrayList.myCollectionWithoutDuplicates);
 
-        Collection <TreeSet> myTreeSet = new TreeSet();
-        startTimePoint = System.nanoTime();
-         copyCollection(myTestList, myTreeSet);
-        stopTimePoint = System.nanoTime();
-        treeSetCollection.addRunTimePoint(startTimePoint,stopTimePoint,"TreeSet fill")
-        printCollection(myTreeSet);// print TreeSet
 
-        Collection <HashSet> myHashSet = new HashSet();
-        startTimePoint = System.nanoTime();
-         copyCollection(myTestList, myHashSet);
-        stopTimePoint = System.nanoTime();
-        hashSetCollection.addRunTimePoint(startTimePoint,stopTimePoint,"HashSet fill");
-        printCollection(myHashSet);// print HashSet
+        CollectionDiscovery myLinkedList = new CollectionDiscovery(myTestNumbers.myCollection,"LinkedList",CollectionDiscovery.listType.LinkedList);
+        myLinkedList.measResult.printRunTimeStatistics();
+        myLinkedList.printCollection(myLinkedList.myCollectionWithoutDuplicates);
 
-        Collection <LinkedHashSet> myLinkedHashSet = new LinkedHashSet();
-        startTimePoint = System.nanoTime();
-         copyCollection(myTestList, myLinkedHashSet);
-        stopTimePoint = System.nanoTime();
-        linkedHashSetCollection.addRunTimePoint(startTimePoint,stopTimePoint,"LinkedHashSet fill");
-        printCollection(myLinkedHashSet);// print LinkedHashSet
+
+        CollectionDiscovery myArrayDeque = new CollectionDiscovery(myTestNumbers.myCollection,"ArrayDeque",CollectionDiscovery.listType.ArrayDeque);
+        myArrayDeque.measResult.printRunTimeStatistics();
+        myArrayDeque.printCollection(myArrayDeque.myCollectionWithoutDuplicates);
+
+
+        CollectionDiscovery myTreeSet = new CollectionDiscovery(myTestNumbers.myCollection,"TreeSet",CollectionDiscovery.listType.TreeSet);
+        myTreeSet.measResult.printRunTimeStatistics();
+        myTreeSet.printCollection(myTreeSet.myCollectionWithoutDuplicates);
+
+
+        CollectionDiscovery myHashSet = new CollectionDiscovery(myTestNumbers.myCollection,"HashSet",CollectionDiscovery.listType.HashSet);
+        myHashSet.measResult.printRunTimeStatistics();
+        myHashSet.printCollection(myHashSet.myCollectionWithoutDuplicates);
+
+
+        CollectionDiscovery myLinkedHashSet = new CollectionDiscovery(myTestNumbers.myCollection,"LinkedHashSet",CollectionDiscovery.listType.LinkedHashSet);
+        myLinkedHashSet.measResult.printRunTimeStatistics();
+        myLinkedHashSet.printCollection(myLinkedHashSet.myCollectionWithoutDuplicates);
+
 
 
     }

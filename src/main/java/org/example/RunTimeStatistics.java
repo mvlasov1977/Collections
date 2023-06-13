@@ -31,16 +31,16 @@ public class RunTimeStatistics {
     }
     public void printRunTimeStatistics(){
         System.out.println("Measurement results for: " + projectName);
-        for (Object o: this.runTimePoints) {
-            if (o instanceof RunTimePoint){
-                RunTimePoint myPoint = (RunTimePoint) o;
-                long runTime = myPoint.EndTimePoint - myPoint.StartTimePoint;
-                System.out.println(myPoint.TaskDescription + " :" + runTime + "ns");
-                 }
-        }
         if (this.runTimePoints.size() == 0){
             System.out.println("Measurement results are empty! \n");
+        }else {
+            for (Object o : this.runTimePoints) {
+                if (o instanceof RunTimePoint) {
+                    RunTimePoint myPoint = (RunTimePoint) o;
+                    long runTime = myPoint.EndTimePoint - myPoint.StartTimePoint;
+                    System.out.println(myPoint.TaskDescription + " :" + runTime + "ns");
+                }
+            }
         }
-
     }
 }
